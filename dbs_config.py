@@ -19,6 +19,7 @@ def config(filename='dbs.ini', section='postgresql'):
             db[param[0]] = param[1]
 
     # return error if a param is called that is not listed in the init file
-    else raise Exception('Section {0} not fround in the {1} file'. format(section,filename))
+    else:
+        raise Exception('Section {0} not fround in the {1} file'. format(section,filename))
 
     return db
