@@ -38,8 +38,8 @@ def createDB(conn):
     DROP TABLE IF EXISTS staging_reported;
     CREATE UNLOGGED TABLE staging_reported (
         countriesAndTerritories text references staging_country (countriesAndTerritories),
-        report_id serial references staging_report (report_id) NOT NULL,
         dateRep text NOT NULL,
+        report_id serial references staging_report (report_id) NOT NULL,
         PRIMARY KEY (report_id, countriesAndTerritories)
     );""")
     conn.commit
