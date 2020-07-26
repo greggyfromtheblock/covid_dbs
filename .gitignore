@@ -1,2 +1,6 @@
-./data
+.DS_Store
+data/
 dbs.ini
+__pycache__
+.ipynb_checkpoints/
+
