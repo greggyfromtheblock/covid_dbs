@@ -1,5 +1,6 @@
-from flask import Flask, render_template, reqiest
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import PrimaryKeyConstraint
 
 app = Flask(__name__)
 
@@ -49,6 +50,9 @@ class Reports(db.Model):
 
 class Reported(db.Model):
     __tablename__ = 'reported'
+    __table_args__ = (
+        PrimaryKeyConstraint('cat', 'report_id'),
+    )
     dateRep = db.Column(db.String(200))
     cat = db.Column(db.String(200), db.ForeignKey('countries.cat'))
     report_id = db.Column(db.Integer, db.ForeignKey('reports.report_id'))
@@ -62,13 +66,13 @@ class Reported(db.Model):
 def index():
     return render_template('index.html')
 
-
-@app.route('/submit', methods=['GET'])
-def request():
-    if request.method == 'REQUEST':
-        # put request queries here
-        return render_template('country.html')
-
+@app.route('/country', methods=['GET'])
+def get_country(country):
+    if request.method == 'GET':
+        country = request.form['country']
+    if country == '':
+        return render_template('index.html', message='Please eneter required fields')
+    return render_template('countries.html')
 
 if __name__ == '__main__':
     app.run()
