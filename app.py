@@ -54,7 +54,7 @@ class Reports(db.Model):
 class Reported(db.Model):
     __tablename__ = 'reported'
     __table_args__ = (
-        PrimaryKeyConstraint('cat, report_id'),
+        PrimaryKeyConstraint('cat', 'report_id'),
     )
     dateRep = db.Column(db.String(200))
     cat = db.Column(db.String(200), db.ForeignKey('countries.cat'))
