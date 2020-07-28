@@ -1,12 +1,12 @@
 import psycopg2
 from dbs_config import config
+import os
+from secret import secret
 
 def connect():
     conn = None
-    # get config
-    params_ = config()
-    # connect with the config from the .ini file
-    conn = psycopg2.connect(**params_)
+    secret_code = secret()
+    conn = psycopg2.connect(secret_code)
     conn.autocommit = True
     return conn
 
@@ -47,7 +47,6 @@ def createDB(conn):
 
 def main():
     conn = None
-    
     try:
         conn = connect()
         conn = createDB(conn)
