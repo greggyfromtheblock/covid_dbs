@@ -6,21 +6,21 @@ from staging_createdb import createDB
 
 app = Flask(__name__)
 
-ENV = 'dev'
-if ENV == 'dev':
-    address = 'postgresql://postgres:postgres@localhost/'
-    app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = address
-    db = SQLAlchemy(app)
-else:
-    address = 'postgres://swtsxkwlolegyh:ce7118b4964bf64170dba2e2aab740e2305ec8b69e572bf9d2d0f54381088bb4@ec2-54-159-138-67.compute-1.amazonaws.com:5432/d8uu6s9ng0kauk'
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = address
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# ENV = 'dev'
+# if ENV == 'dev':
+#     address = 'postgresql://postgres:postgres@localhost/'
+#     app.debug = True
+#     app.config['SQLALCHEMY_DATABASE_URI'] = address
+#     db = SQLAlchemy(app)
+# else:
+#     address = 'postgres://swtsxkwlolegyh:ce7118b4964bf64170dba2e2aab740e2305ec8b69e572bf9d2d0f54381088bb4@ec2-54-159-138-67.compute-1.amazonaws.com:5432/d8uu6s9ng0kauk'
+#     app.debug = False
+#     app.config['SQLALCHEMY_DATABASE_URI'] = address
+#     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-conn_string = address
-conn = psycopg2.connect(conn_string)
-print('success')
+# conn_string = address
+# conn = psycopg2.connect(conn_string)
+# print('success')
 
 @app.route('/')
 def index():
