@@ -2,4 +2,5 @@
 dbs.ini
 __pycache__
 .ipynb_checkpoints/
+secret.py
 
