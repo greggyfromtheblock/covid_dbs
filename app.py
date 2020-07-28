@@ -4,7 +4,6 @@ from sqlalchemy import PrimaryKeyConstraint, create_engine
 import psycopg2
 from flask_sqlalchemy import SQLAlchemy
 from send_mail import send_mail
-from staging_createdb import createDB
 
 app = Flask(__name__)
 
