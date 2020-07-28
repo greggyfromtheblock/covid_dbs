@@ -1,20 +1,25 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import PrimaryKeyConstraint
+from sqlalchemy import PrimaryKeyConstraint, create_engine
+import psycopg2
 
 app = Flask(__name__)
 
 ENV = 'dev'
 if ENV == 'dev':
+    address = 'postgresql://postgres:postgres@localhost/'
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/'
-
+    app.config['SQLALCHEMY_DATABASE_URI'] = address
 else:
+    address = 'postgres://swtsxkwlolegyh:ce7118b4964bf64170dba2e2aab740e2305ec8b69e572bf9d2d0f54381088bb4@ec2-54-159-138-67.compute-1.amazonaws.com:5432/d8uu6s9ng0kauk'
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/'
+    app.config['SQLALCHEMY_DATABASE_URI'] = address
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+engine = create_engine(address)
+connection = engine.raw_connection()
+cursor = connection.cursor()
 
 class Countries(db.Model):
     __tablename__ = 'countries'
@@ -66,8 +71,8 @@ class Reported(db.Model):
 def index():
     return render_template('index.html')
 
-@app.route('/country', methods=['GET'])
-def get_country(country):
+@app.route('/country/<name>', methods=['GET'])
+def get_country(name):
     if request.method == 'GET':
         country = request.form['country']
     if country == '':
