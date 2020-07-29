@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from sqlalchemy import PrimaryKeyConstraint, create_engine, ForeignKey
+from sqlalchemy import UniqueConstraint, PrimaryKeyConstraint, create_engine, ForeignKey
 from sqlalchemy.orm import relationship
 import psycopg2
 from flask_sqlalchemy import SQLAlchemy
@@ -26,18 +26,19 @@ class Countries(db.Model):
     popdata = db.Column(db.String(200))
     ctc = db.Column(db.String(200))
     continent_exp = db.Column(db.String(200))
+    geo_id = db.Column(db.String(200), unique=True)
     children = relationship("Reports", back_populates='parent')
-    def __init__(self, cat, popdata, ctc, continent_exp):
+    def __init__(self, cat, popdata, ctc, continent_exp, geo_id):
         self.cat = cat
         self.popdata = popdata
         self.ctc = ctc
         self.continent_exp = continent_exp
-        self.geoID = geoID
+        self.geo_id = geo_id
 
 class Reports(db.Model):
     __tablename__ = 'reports'
     report_id = db.Column(db.Integer, primary_key=True)
-    geoID = db.Column(db.String(200), ForeignKey('countries.geoID'))
+    geo_id = db.Column(db.String(200), ForeignKey('countries.geo_id'))
     day = db.Column(db.Integer)
     month = db.Column(db.Integer)
     year = db.Column(db.Integer)
@@ -47,7 +48,7 @@ class Reports(db.Model):
 
     def __init__(self, cat, popdata, ctc, continent_exp):
         self.report_id = report_id
-        self.geoID = geoID
+        self.geo_id = geo_id
         self.day = day
         self.month = month
         self.year = year
