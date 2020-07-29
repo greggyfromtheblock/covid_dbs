@@ -49,7 +49,7 @@ reportsdf = readReports()
 reportsdf.to_sql('reports', con, if_exists = 'append', index=False)
 
 reporteddf = readReported()
-reporteddf.to_sql('reported', con, if_exists = 'append', index=False)
+reporteddf.to_sql('reported', con, if_exists = 'append', index=True)
 
 print('success biatch')
 

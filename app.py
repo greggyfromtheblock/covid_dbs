@@ -60,16 +60,16 @@ class Reported(db.Model):
     __table_args__ = (
         PrimaryKeyConstraint('cat', 'report_id'),
     )
+    report_id = db.Column(db.Integer, db.ForeignKey('reports.report_id'))
     dateRep = db.Column(db.String(200))
     cat = db.Column(db.String(200), db.ForeignKey('countries.cat'))
-    report_id = db.Column(db.Integer, db.ForeignKey('reports.report_id'))
     catrel = relationship("Countries", foreign_keys=[cat])
     reprel = relationship("Reports", foreign_keys=[report_id])
 
     def __init__(self, cat, popdata, ctc, continent_exp):
+        self.report_id = report_id
         self.dateRep = dateRep
         self.cat = cat
-        self.report_id = report_id
 
 @app.route('/')
 def index():
