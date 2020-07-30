@@ -10,23 +10,23 @@ try:
 
     cursor = connection.cursor()
     
-    create_table_query = '''CREATE TABLE COUNTRY (
-                    countriesAndTerritories     TEXT PRIMARY KEY    NOT NULL,
+    create_table_query = '''CREATE TABLE country (
+                    countriesandterritories     TEXT PRIMARY KEY    NOT NULL,
                     popData2018                 INT                         ,
-                    countryterritoryCode        TEXT                        ,
-                    continentExp                TEXT                        );
-                    CREATE TABLE REPORT(
-                    ID                          INT PRIMARY KEY     NOT NULL,
-                    geoID                       TEXT                NOT NULL,
+                    countryterritorycode        TEXT                        ,
+                    continentexp                TEXT                        );
+                    CREATE TABLE report(
+                    id                          INT PRIMARY KEY     NOT NULL,
+                    geoid                       TEXT                NOT NULL,
                     day                         INT                 NOT NULL,
                     month                       INT                 NOT NULL,
                     year                        INT                 NOT NULL,
                     cases                       INT                 NOT NULL,
                     deaths                      INT                 NOT NULL);
-                    CREATE TABLE REPORTED(
-                    countriesAndTerritories     TEXT                NOT NULL,
-                    Report_ID                   INT PRIMARY KEY     NOT NULL,
-                    dateRep                     TEXT                NOT NULL);'''
+                    CREATE TABLE reported(
+                    countriesandterritories     TEXT                NOT NULL,
+                    report_id                   INT PRIMARY KEY     NOT NULL,
+                    daterep                     TEXT                NOT NULL);'''
 
     create_table_values = ''' COPY country   FROM '/home/mitsukiakina/project/country.csv'   DELIMITER ',' CSV HEADER;
                             COPY report    FROM '/home/mitsukiakina/project/report.csv'    DELIMITER ',' CSV HEADER;
