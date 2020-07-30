@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<link rel="stylesheet" href="../static/style.css" />
+		<title>Covid-19</title>
+	</head>
+	<body>
+		<div class="container">
+			<h3>Full Report Table is shown.</h3>
+			<a href="/" class="btn">Back</a>
+			<!-- have made another table to have something, but the style is not perfect -->
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>geoID</th>
+					<th>Day</th>
+					<th>Month</th>
+					<th>Year</th>
+					<th>Cases</th>
+					<th>Deaths</th>
+				</tr>
+				{% for item in test2 %}
+				<tr>
+					<td>{{ item.id }}</td>
+					<td>{{ item.geoid }}</td>
+					<td>{{ item.day }}</td>
+					<td>{{ item.month }}</td>
+					<td>{{ item.year }}</td>
+					<td>{{ item.cases }}</td>
+					<td>{{ item.deaths }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
+

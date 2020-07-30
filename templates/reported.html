@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<link rel="stylesheet" href="../static/style.css" />
+		<title>Covid-19</title>
+	</head>
+	<body>
+		<div class="container">
+			<h3>Full Reported Table is shown.</h3>
+			<a href="/" class="btn">Back</a>
+			<!-- have made another table to have all data from the database, but the style is not perfect -->
+			<table>
+				<tr>
+					<th>Country Name</th>
+					<th>Report ID</th>
+					<th>Date Of Report</th>
+				</tr>
+				{% for item in test3 %}
+				<tr>
+					<td>{{ item.countriesandterritories }}</td>
+					<td>{{ item.report_id }}</td>
+					<td>{{ item.daterep }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
+

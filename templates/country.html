@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+<style>
+table, th, td {
+	border: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+		<meta charset="utf-8"></meta>
+		<link rel="stylesheet" href="../static/style.css" />
+		<title>Covid-19</title>
+	</head>
+	<body>
+		<div class="container">
+			<h3>Full Country Table is shown.</h3>
+			<a href="/" class="btn">Back</a>
+			<!-- Just a table I do first to understand how I show the values of the query -->
+			<table>
+				<tr>
+					<th>Country Name   </th>
+					<th>Population Data 2018   </th>
+					<th>Country Code   </th>
+					<th>Continent   </th>
+				</tr>
+				{% for item in test %}
+				<tr>
+					<td>{{ item.countriesandterritories }}</td>
+					<td>{{ item.popdata2018 }}</td>
+					<td>{{ item.countryterritorycode }}</td>
+					<td>{{ item.continentexp }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
+

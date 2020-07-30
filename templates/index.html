@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<link rel="stylesheet" href="../static/style.css" />
+		<title>Covid-19</title>
+	</head>
+	<body>
+		<div class="container">
+			{% if message %}
+			<p class="message">{{ message | safe }}</p>
+			{% endif %}
+			<form action="/submit" method="POST">
+				<div class="form-group">
+					<h3>Covid-19 Tables And Graphics</h3>
+					<select name="tables">
+						<option value="">Select Table/Graphic</option>
+						<option value="Full Country Table">Full Country Table</option>
+						<option value="Full Report Table">Full Report Table</option>
+						<option value="Full Reported Table">Full Reported Table</option>
+						<option value="Germany">Germany Table</option>
+					</select>
+				</div>
+				<input type="submit" value="Submit" class="btn" />
+			</form>
+		</div>
+	</body>
+</html>
+
