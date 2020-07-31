@@ -78,9 +78,10 @@ def submit():
         if tables == 'Full Reported Table':
             test3 = Reported.query.all()
             return render_template('reported.html', test3=test3)
-        if tables == 'Germany':
-            test4 = db.engine.execute("SELECT report.day,report.month,report.year,report.cases,report.deaths FROM country,report,reported WHERE country.countriesandterritories=reported.countriesandterritories AND reported.report_id=report.id AND country.countriesandterritories='Germany' AND report.year = 2020")
-            return render_template('germany.html', test4=test4)
+        if tables == 'Germany': 
+            labels = db.engine.execute("SELECT report.day,report.month,report.year,report.deaths FROM country,report,reported WHERE country.countriesandterritories=reported.countriesandterritories AND reported.report_id=report.id AND country.countriesandterritories='Germany' AND report.year = 2020")
+            values = db.engine.execute("SELECT report.day,report.month,report.year,report.cases FROM country,report,reported WHERE country.countriesandterritories=reported.countriesandterritories AND reported.report_id=report.id AND country.countriesandterritories='Germany' AND report.year = 2020")
+            return render_template('germany.html', labels=labels, values=values)
 
 if __name__ == '__main__':
     app.run()
