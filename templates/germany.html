@@ -10,28 +10,30 @@
     <script type="text/javascript" src="http://www.pureexample.com/js/flot/jquery.flot.min.js"></script>    
     <script type="text/javascript" src="http://www.pureexample.com/js/flot/jquery.flot.symbol.js"></script>
     <script type="text/javascript" src="http://www.pureexample.com/js/flot/jquery.flot.axislabels.js"></script>
+    <script type="text/javascript" src="http://www.pureexample.com/js/flot/jquery.flot.logaxis.js"></script>
+    <script type="text/javascript" src="http://www.pureexample.com/js/flot/jquery.flot.orderBars.js"></script>
      
     <script type="text/javascript">
-	    var data = [{% for dat in test4 %} [gd({{ dat.year }},{{ dat.month }},{{ dat.day }}),{{ dat.deaths }}],{% endfor %}];
+	    var data = [{% for i in labels %}[gd({{ i.year }},{{ i.month }},{{ i.day }}),{{ i.deaths }}],{% endfor %}];
 
 	<!-- this for loop is not really working and the xaxis should have dates not UTC values -->
-	var data2 = [{% for item in test4 %} [gd({{ item.year }},{{ item.month }},{{ item.day }}),{{ item.cases }}],{% endfor %}]; 	
+var data2 = [{% for j in values %} [gd({{ j.year }},{{ j.month }},{{ j.day }}),{{ j.cases }}],{% endfor %}]; 	
 
-        var dataset = [{ label: "Deaths", data: data, color: "black"},
-			{label: "Cases", data: data2, color: "red"}
+var dataset = [{ label: "Cases", data: data2, color: "red"},
+	{label: "Deaths", data: data, color: "black"}
 			];
  
         var options = {
-            series: {
-                bars: {
-                    show: true
-                }
-            },
-            bars: {
-                align: "center",
-                barWidth: 0.5
-            },
+		series: {
+			bars: {
+				show: true,
+				barWidth: 0.01,
+				align: "center"
+			}
+		},
             xaxis: {
+		mode: "categories",
+		tickLength: 0,
                 axisLabel: "Date",
                 axisLabelUseCanvas: true,
                 axisLabelFontSizePixels: 12,
@@ -39,6 +41,7 @@
                 axisLabelPadding: 10
             },
             yaxis: {
+		transform: function(v) {return Math.log(v+0.1);},
                 axisLabel: "Number Of Incidents",
                 axisLabelUseCanvas: true,
                 axisLabelFontSizePixels: 12,
