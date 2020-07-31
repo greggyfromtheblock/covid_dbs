@@ -16,7 +16,6 @@
     <script type="text/javascript">
 	    var data = [{% for i in labels %}[gd({{ i.year }},{{ i.month }},{{ i.day }}),{{ i.deaths }}],{% endfor %}];
 
-	<!-- this for loop is not really working and the xaxis should have dates not UTC values -->
 var data2 = [{% for j in values %} [gd({{ j.year }},{{ j.month }},{{ j.day }}),{{ j.cases }}],{% endfor %}]; 	
 
 var dataset = [{ label: "Cases", data: data2, color: "red"},
