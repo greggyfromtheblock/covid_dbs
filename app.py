@@ -26,14 +26,11 @@ class Countries(db.Model):
     popdata = db.Column(db.String(200))
     ctc = db.Column(db.String(200))
     continent_exp = db.Column(db.String(200))
-    geo_id = db.Column(db.String(200), unique=True)
-    children = relationship("Reports", back_populates='parent')
     def __init__(self, cat, popdata, ctc, continent_exp, geo_id):
         self.cat = cat
         self.popdata = popdata
         self.ctc = ctc
-        self.continent_exp = continent_exp
-        self.geo_id = geo_id
+        self.continent_exp = continent_exP
 
 class Reports(db.Model):
     __tablename__ = 'reports'
@@ -44,7 +41,6 @@ class Reports(db.Model):
     year = db.Column(db.Integer)
     cases = db.Column(db.Integer)
     deaths = db.Column(db.Integer)
-    parent = relationship("Countries", back_populates='children')
 
     def __init__(self, cat, popdata, ctc, continent_exp):
         self.report_id = report_id
@@ -63,8 +59,6 @@ class Reported(db.Model):
     report_id = db.Column(db.Integer, db.ForeignKey('reports.report_id'))
     dateRep = db.Column(db.String(200))
     cat = db.Column(db.String(200), db.ForeignKey('countries.cat'))
-    catrel = relationship("Countries", foreign_keys=[cat])
-    reprel = relationship("Reports", foreign_keys=[report_id])
 
     def __init__(self, cat, popdata, ctc, continent_exp):
         self.report_id = report_id
