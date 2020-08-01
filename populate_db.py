@@ -22,8 +22,8 @@ def readCountries():
     for country in countries:
         fvi.append(df[df.countriesAndTerritories==country].first_valid_index())
     countrydf = df.loc[fvi,['countriesAndTerritories', 'popData2018',
-                            'countryterritoryCode', 'continentExp', 'geoId']]
-    countrydf.columns = ['cat', 'popdata', 'ctc', 'continent_exp', 'geo_id']
+                            'countryterritoryCode', 'continentExp']]
+    countrydf.columns = ['cat', 'popdata', 'ctc', 'continent_exp']
     return countrydf
 
 def readReported():
@@ -48,6 +48,7 @@ print(countrydf)
 reportsdf = readReports()
 reportsdf.to_sql('reports', con, if_exists = 'append', index=False)
 
+# TODO: Test this cus its possibly not working
 reporteddf = readReported()
 reporteddf.to_sql('reported', con, if_exists = 'append', index=True)
 
