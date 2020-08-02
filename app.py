@@ -26,7 +26,7 @@ class Countries(db.Model):
     popdata = db.Column(db.String(200))
     ctc = db.Column(db.String(200))
     continent_exp = db.Column(db.String(200))
-    def __init__(self, cat, popdata, ctc, continent_exp, geo_id):
+    def __init__(self, cat, popdata, ctc, continent_exp):
         self.cat = cat
         self.popdata = popdata
         self.ctc = ctc
@@ -35,7 +35,6 @@ class Countries(db.Model):
 class Reports(db.Model):
     __tablename__ = 'reports'
     report_id = db.Column(db.Integer, primary_key=True)
-    geo_id = db.Column(db.String(200), ForeignKey('countries.geo_id'))
     day = db.Column(db.Integer)
     month = db.Column(db.Integer)
     year = db.Column(db.Integer)
