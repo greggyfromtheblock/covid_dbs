@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<link rel="stylesheet" href="../static/style.css" />
+		<title>Covid-19</title>
+	</head>
+	<body>
+		<div class="container">
+			{% if message %}
+			<p class="message">{{ message | safe }}</p>
+			{% endif %}
+			<form action="/submit" method="POST">
+				<div class="form-group">
+					<h3>Covid-19 Tables And Graphics</h3>
+					<select name="tables">
+						<option value="">Select Country/Territory</option>
+						<option value="Afghanistan">Afghanistan</option>
+						<option value="Albania">Albania</option>
+						<option value="Algeria">Algeria</option>
+						<option value="Andorra">Andorra</option>
+						<option value="Angola">Angola</option>
+						<option value="Anguilla">Anguilla</option>
+						<option value="Antigua">Antigua and Barbuda</option>
+						<option value="Argentina">Argentina</option>
+						<option value="Armenia">Armenia</option>
+						<option value="Aruba">Aruba</option>
+						<option value="Australia">Australia</option>
+						<option value="Austria">Austria</option>
+						<option value="Azerbaijan">Azerbaijan</option>
+						<option value="Bahamas">Bahamas</option>
+						<option value="Bahrain">Bahrain</option>
+						<option value="Bangladesh">Bangladesh</option>
+						<option value="Barbados">Barbados</option>
+						<option value="Belarus">Belarus</option>
+						<option value="Belgium">Belgium</option>
+						<option value="Belize">Belize</option>
+						<option value="Benin">Benin</option>
+						<option value="Bermuda">Bermuda</option>
+						<option value="Bhutan">Bhutan</option>
+						<option value="Bolivia">Bolivia</option>
+						<option value="Bonaire">Bonaire, Saint Eustatius and Saba</option>
+						<option value="Bosnia">Bosnia and Herzegovina</option>
+						<option value="Botswana">Botswana</option>
+						<option value="Brazil">Brazil</option>
+						<option value="British">British Virgin Islands</option>
+						<option value="Brunei">Brunei Darussalam</option>
+						<option value="Bulgaria">Bulgaria</option>
+						<option value="Burkina">Burkina Faso</option>
+						<option value="Burundi">Burundi</option>
+						<option value="Cambodia">Cambodia</option>
+						<option value="Cameroon">Cameroon</option>
+						<option value="Canada">Canada</option>
+						<option value="Cape">Cape Verde</option>
+						<option value="Cases">Cases on an international conveyance Japan</option>
+						<option value="Cayman">Cayman Islands</option>
+						<option value="Central">Central African Republic</option>
+						<option value="Chad">Chad</option>
+						<option value="Chile">Chile</option>
+						<option value="China">China</option>
+						<option value="Colombia">Colombia</option>
+						<option value="Comoros">Comoros</option>
+						<option value="Congo">Congo</option>
+						<option value="Costa">Costa Rica</option>
+						<option value="Cote">Cote d'Ivoire</option>
+						<option value"Croatia">Croatia</option>
+						<option value="Cuba">Cuba</option>
+						<option value="Curacao">Curacao</option>
+						<option value="Cyprus">Cyprus</option>
+						<option value="Czechia">Czechia</option>
+						<option value="Democratic">Democratic Republic of the Congo</option>
+						<option value="Denmark">Denmark</option>
+						<option value="Djibouti">Djibouti</option>
+						<option value="Dominica">Dominica</option>
+						<option value="Dominican">Dominican Republic</option>
+						<option value="Ecuador">Ecuador</option>
+						<option value="Egypt">Egypt</option>
+						<option value="El">El Salvador</option>
+						<option value="Equatorial">Equatorial Guinea</option>
+						<option value="Eritrea">Eritrea</option>
+						<option value="Estonia">Estonia</option>
+						<option value="Eswatini">Eswatini</option>
+						<option value="Ethiopia">Ethiopia</option>
+						<option value="Falkland">Falkland Islands (Malvinas)</option>
+						<option value="Faroe">Faroe Islands</option>
+						<option value="Fiji">Fiji</option>
+						<option value="Finland">Finland</option>
+						<option value="France">France</option>
+						<option value="French">French Polynesia</option>
+						<option value="Gabon">Gabon</option>
+						<option value="Gambia">Gambia</option>
+						<option value="Georgia">Georgia</option>
+						<option value="Germany">Germany</option>
+						<option value="Ghana">Ghana</option>
+						<option value="Gibraltar">Gibraltar</option>
+						<option value="Greece">Greece</option>
+						<option value="Greenland">Greenland</option>
+						<option value="Grenada">Grenada</option>
+						<option value="Guam">Guam</option>
+						<option value="Guatemala">Guatemala</option>
+						<option value="Guernsey">Guernsey</option>
+						<option value="Guinea">Guinea</option>
+						<option value="GuineaBissau">Guinea Bissau</option>
+						<option value="Guyana">Guyana</option>
+						<option value="Haiti">Haiti</option>
+						<option value="Holy">Holy See</option>
+						<option value="Honduras">Honduras</option>
+						<option value="Hungary">Hungary</option>
+						<option value="Iceland">Iceland</option>
+						<option value="India">India</option>
+						<option value="Indonesia">Indonesia</option>
+						<option value="Iran">Iran</option>
+						<option value="Iraq">Iraq</option>
+						<option value="Ireland">Ireland</option>
+						<option value="Isle">Isle of Man</option>
+						<option value="Israel">Israel</option>
+						<option value="Italy">Italy</option>
+					</select>
+				</div>
+				<input type="submit" value="Submit" class="btn" />
+			</form>
+		</div>
+	</body>
+</html>
+
