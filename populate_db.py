@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_sqlalchemy import SQLAlchemy
 
-ENV = 'DEV'
+ENV = 'PROD'
 
 if ENV == 'DEV':
     engine = create_engine('postgresql://postgres:postgres@localhost:5432/covid_staging')
