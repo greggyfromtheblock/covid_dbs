@@ -1,13 +1,14 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, flash
 from sqlalchemy import UniqueConstraint, PrimaryKeyConstraint, create_engine, ForeignKey
 from sqlalchemy.orm import relationship
 import psycopg2
 from flask_sqlalchemy import SQLAlchemy
 from send_mail import send_mail
+from wtforms import Form, StringField, SelectField
 
 app = Flask(__name__)
 
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
@@ -19,6 +20,13 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+class MainForm(Form):
+    countries = [('Germany', 'Germany'),
+                   ('USA', 'USA'),
+                   ('Afghanistan', 'Afghanistan')]
+    select = SelectField('Country', choices=countries)
+    search = StringField('')
 
 class Countries(db.Model):
     __tablename__ = 'countries'
@@ -64,10 +72,24 @@ class Reported(db.Model):
         self.dateRep = dateRep
         self.cat = cat
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    search = MainForm(request.form)
+    return render_template('index.html', form=select)
 
+@app.route('/results')
+def search_results(search):
+    results = []
+    search_string = search.data['search']
+    if search.data['search'] == '':
+        qry = db_session.query(Album)
+        results = qry.all()
+    if not results:
+        flash('No results found!')
+        return redirect('/')
+    else:
+        # display results
+        return render_template('results.html', results=results)
 
 if __name__ == '__main__':
     app.run()
